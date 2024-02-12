@@ -1,6 +1,15 @@
-#include <iostream>
+#include "Deck.h"
+#include "PlayerCard.h"
+#include "Card.h"
+#include "Dealer.h"
+#include "define.h"
+#include "Game.h"
 
-int main()
-{
-    std::cout << "Hello World!\n";
+int main() {
+    srand(time(NULL));
+    Game game;
+    game.run();
+
+    return 0;
+
 }
