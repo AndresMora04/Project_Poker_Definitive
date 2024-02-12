@@ -43,6 +43,9 @@ private:
 
 	Font welcomefont, playerAdvertFont, maxPlayersAdvertFont;
 	Text welcomeText, playerAdvertText, maxPlayersAdvertText;
+	
+	Sprite sprite;
+
 
 public:
 	Game() : window(VideoMode(1100, 600), "Game"), numPlayers(0) {
@@ -196,6 +199,7 @@ public:
 					break;
 				case 2:
 					playerImages[numPlayers].setPosition(200, 490); 
+					break;
 				case 3:
 					playerImages[numPlayers].setPosition(705, 490);
 					break;
@@ -245,9 +249,6 @@ public:
 						std::string card = players[i].getPlayerCards()[j];
 						std::string suit = Card().getSuit(card);
 						std::string rank = Card().getRank(card);
-						cout << card << endl;
-						cout << rank << endl;
-						cout << suit << endl;
 						sf::Texture texture;
 						texture = deck.printTextures(suit, rank, texture);
 						players[i].setCardTextures(texture, j);
@@ -340,7 +341,8 @@ public:
 			window.draw(reverseCardImage);
 			for (int i = 0; i < numPlayers; i++) {
 				for (int j = 0; j < 4; j++) {
-					sf::Sprite sprite(players[i].getCardTexture(j));
+					Sprite sprite;
+					sprite.setTexture(players[i].getCardTexture(j));
 					sprite.setPosition(xOffset, 0);
 					sprite.setScale(0.2f, 0.2f);
 					window.draw(sprite);
@@ -348,9 +350,10 @@ public:
 				}
 			}
 			for (int i = 0; i < dealer.getCardsSize(); i++) {
-				sf::Sprite sprite(dealer.getTexture(i));
+				Sprite sprite;
+				sprite.setTexture(dealer.getTexture(i));
 				sprite.setPosition(xOffset, 0);
-				sprite.setScale(0.3f, 0.3f);
+				sprite.setScale(0.2f, 0.2f);
 				window.draw(sprite);
 				xOffset += 50.0f;
 			}
